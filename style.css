@@ -1,0 +1,176 @@
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --bg-color: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: var(--card-bg);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.logo span {
+    color: var(--text-main);
+}
+
+.navbar nav a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.navbar nav a:hover, .navbar nav a.active {
+    color: var(--primary);
+}
+
+/* Container & Hero */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.hero p {
+    color: var(--text-muted);
+}
+
+/* Cards Layout */
+.card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.card h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.card p {
+    color: var(--text-muted);
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+}
+
+/* Form Controls */
+textarea, input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+textarea:focus, input[type="text"]:focus {
+    border-color: var(--primary);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Output Box */
+.output-box {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f1f5f9;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+/* Task List */
+.task-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#taskList {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+#taskList li {
+    padding: 0.75rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+      }
+      
