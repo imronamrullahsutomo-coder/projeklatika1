@@ -1,70 +1,37 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduAI Assistant - Solusi Digital Sekolah</title>
-    <!-- Google Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <!-- Header / Navbar -->
-    <header class="navbar">
-        <div class="logo">Edu<span>AI</span></div>
-        <nav>
-            <a href="#study" class="nav-link active">Belajar</a>
-            <a href="#schedule" class="nav-link">Kegiatan</a>
-            <a href="#solver" class="nav-link">Solusi Masalah</a>
-        </nav>
-    </header>
-
-    <!-- Main Content Container -->
-    <main class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1>Solusi Digital Sekolah Berbantuan AI</h1>
-            <p>Mudahkan kegiatan belajar, atur jadwal sekolah, dan selesaikan masalah harianmu dalam satu platform.</p>
-        </section>
-
-        <!-- Feature 1: AI Study Summarizer -->
+        <!-- Feature 1: AI Study Summarizer (Text & Image Upload) -->
         <section id="study" class="card">
-            <h2>🧠 AI Study Summarizer</h2>
-            <p>Masukkan teks atau materi pelajaran yang panjang, biarkan sistem merangkumnya untukmu.</p>
-            <textarea id="inputText" placeholder="Tempel materi pelajaran di sini..."></textarea>
-            <button id="summarizeBtn">Rangkum Materi</button>
+            <h2>🧠 AI Study Summarizer (Teks & Foto)</h2>
+            <p>Masukkan teks materi atau unggah foto catatan/buku pelajaranmu untuk dirangkum otomatis.</p>
+            
+            <!-- Tab Pilihan Input (Teks vs Foto) -->
+            <div class="tab-container">
+                <button class="tab-btn active" onclick="switchTab('text')">Ketik/Tempel Teks</button>
+                <button class="tab-btn" onclick="switchTab('image')">Unggah Foto Buku</button>
+            </div>
+
+            <!-- Input Teks -->
+            <div id="textTabContent" class="tab-content active">
+                <textarea id="inputText" placeholder="Tempel materi pelajaran di sini..."></textarea>
+            </div>
+
+            <!-- Input Foto -->
+            <div id="imageTabContent" class="tab-content" style="display: none;">
+                <div class="upload-dropzone" id="dropzone">
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                    <div id="uploadLabel" onclick="document.getElementById('imageInput').click()" style="cursor: pointer;">
+                        📷 <strong>Klik untuk unggah foto</strong> atau seret gambar ke sini<br>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);">(Format: JPG, PNG)</span>
+                    </div>
+                    <!-- Preview Gambar -->
+                    <div id="imagePreviewContainer" style="display: none; margin-top: 10px;">
+                        <img id="imagePreview" src="" alt="Preview Foto" style="max-width: 100%; max-height: 150px; border-radius: 8px;">
+                        <br>
+                        <button type="button" id="removeImageBtn" style="margin-top: 5px; background: #ef4444; padding: 0.3rem 0.6rem; font-size: 0.8rem;">Hapus Foto</button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="summarizeBtn" style="margin-top: 1rem;">Rangkum Materi</button>
             <div id="outputResult" class="output-box">Hasil rangkuman akan muncul di sini...</div>
         </section>
-
-        <!-- Feature 2: School Schedule & Task Tracker -->
-        <section id="schedule" class="card">
-            <h2>📅 Pengingat Kegiatan Sekolah</h2>
-            <div class="task-input-group">
-                <input type="text" id="taskInput" placeholder="Contoh: Tugas Praktikum DKV pukul 10.00">
-                <button id="addTaskBtn">Tambah Jadwal</button>
-            </div>
-            <ul id="taskList">
-                <!-- List tugas akan masuk secara dinamis via JS -->
-            </ul>
-        </section>
-
-        <!-- Feature 3: Daily Problem Solver -->
-        <section id="solver" class="card">
-            <h2>💡 AI Problem Solver (Tanya Kendala)</h2>
-            <p>Punya masalah di sekolah? Ketik kendalamu di bawah untuk mendapatkan solusi cepat.</p>
-            <input type="text" id="problemInput" placeholder="Contoh: Bagaimana cara izin sakit yang benar?">
-            <button id="solveBtn">Cari Solusi</button>
-            <div id="solutionResult" class="output-box">Solusi akan muncul di sini...</div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 EduAI Assistant. Dibuat oleh Siswa SMK untuk Warga Sekolah.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-              </html>
-  
+        
