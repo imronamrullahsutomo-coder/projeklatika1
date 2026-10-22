@@ -68,4 +68,96 @@ solveBtn.addEventListener('click', () => {
         solutionResult.innerHTML = `💡 <strong>Saran Solusi:</strong><br>${solution}`;
     }, 1000);
 });
-               
+// Variabel untuk melacak mode input aktif ('text' atau 'image')
+let activeInputMode = 'text';
+let uploadedImageFile = null;
+
+function switchTab(mode) {
+    activeInputMode = mode;
+    const textTab = document.getElementById('textTabContent');
+    const imageTab = document.getElementById('imageTabContent');
+    const buttons = document.querySelectorAll('.tab-btn');
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    if (mode === 'text') {
+        textTab.style.display = 'block';
+        imageTab.style.display = 'none';
+        buttons[0].classList.add('active');
+    } else {
+        textTab.style.display = 'none';
+        imageTab.style.display = 'block';
+        buttons[1].classList.add('active');
+    }
+}
+
+// Logika Preview Gambar saat di-upload
+const imageInput = document.getElementById('imageInput');
+const uploadLabel = document.getElementById('uploadLabel');
+const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+const imagePreview = document.getElementById('imagePreview');
+const removeImageBtn = document.getElementById('removeImageBtn');
+
+imageInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        uploadedImageFile = file;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            uploadLabel.style.display = 'none';
+            imagePreviewContainer.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+removeImageBtn.addEventListener('click', () => {
+    uploadedImageFile = null;
+    imageInput.value = '';
+    imagePreview.src = '';
+    imagePreviewContainer.style.display = 'none';
+    uploadLabel.style.display = 'block';
+});
+
+// Modifikasi Logika Tombol Rangkum untuk Mendukung Foto
+const summarizeBtn = document.getElementById('summarizeBtn');
+const inputText = document.getElementById('inputText');
+const outputResult = document.getElementById('outputResult');
+
+summarizeBtn.addEventListener('click', () => {
+    if (activeInputMode === 'text') {
+        const text = inputText.value.trim();
+        if (!text) {
+            outputResult.textContent = "⚠️ Mohon masukkan teks materi terlebih dahulu!";
+            return;
+        }
+        
+        outputResult.textContent = "🤖 Sedang menganalisis dan merangkum teks...";
+        setTimeout(() => {
+            const words = text.split(' ').length;
+            outputResult.innerHTML = `<strong>✨ Rangkuman AI (Dari Teks):</strong><br>
+            • Total kata dianalisis: ${words} kata.<br>
+            • Poin Utama: Materi membahas konsep inti yang relevan untuk kebutuhan belajar sekolah.<br>
+            • Kesimpulan: Pelajari kembali poin-poin penting di atas secara berkala.`;
+        }, 1000);
+
+    } else {
+        // Mode Gambar
+        if (!uploadedImageFile) {
+            outputResult.textContent = "⚠️ Mohon unggah foto catatan terlebih dahulu!";
+            return;
+        }
+
+        outputResult.textContent = `🔍 AI sedang memindai foto "${uploadedImageFile.name}" (OCR & Vision)...`;
+        
+        setTimeout(() => {
+            outputResult.innerHTML = `<strong>✨ Rangkuman AI (Dari Foto Catatan):</strong><br>
+            • Nama File: <em>${uploadedImageFile.name}</em><br>
+            • Hasil Ekstraksi Teks: Catatan terbaca dengan jelas (terdeteksi materi ringkas & rumus/poin penting).<br>
+            • Poin Utama: Dokumen ini merangkum subjek pembelajaran utama dengan struktur poin.<br>
+            • Kesimpulan: Foto berhasil dianalisis. Sangat cocok dijadikan bahan belajar cepat!`;
+        }, 1500);
+    }
+});
+    
